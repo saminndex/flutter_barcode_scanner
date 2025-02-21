@@ -16,7 +16,7 @@ package com.amolg.flutterbarcodescanner;
 
     import java.util.Map;
 
-    import io.flutter.embedding.android.FlutterActivity;
+    import io.flutter.embedding.android.FlutterFragmentActivity;
     import io.flutter.embedding.engine.plugins.FlutterPlugin;
     import io.flutter.embedding.engine.plugins.activity.ActivityAware;
     import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
@@ -36,7 +36,7 @@ package com.amolg.flutterbarcodescanner;
     public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityResultListener, StreamHandler, FlutterPlugin, ActivityAware {
         private static final String CHANNEL = "flutter_barcode_scanner";
 
-        private static FlutterActivity activity;
+        private static FlutterFragmentActivity activity;
         private static Result pendingResult;
         private Map<String, Object> arguments;
 
@@ -59,7 +59,7 @@ package com.amolg.flutterbarcodescanner;
         }
 
         private FlutterBarcodeScannerPlugin(Activity activity) {
-            FlutterBarcodeScannerPlugin.activity = (FlutterActivity) activity;
+            FlutterBarcodeScannerPlugin.activity = (FlutterFragmentActivity) activity;
         }
 
         @Override
@@ -191,7 +191,7 @@ package com.amolg.flutterbarcodescanner;
                 final Activity activity,
                 final ActivityPluginBinding activityBinding) {
 
-            this.activity = (FlutterActivity) activity;
+            this.activity = (FlutterFragmentActivity) activity;
             eventChannel = new EventChannel(messenger, "flutter_barcode_scanner_receiver");
             eventChannel.setStreamHandler(this);
 
